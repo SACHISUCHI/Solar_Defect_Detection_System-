@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 mt-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 bg-dark text-white vh-100 position-fixed">
+            <div class="p-4">
+                <h4 class="text-white mb-4">Admin Panel</h4>
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="{{ url_for('admin_dashboard') }}" class="nav-link text-white active">
+                            <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('manage_users') }}" class="nav-link text-white">
+                            <i class="bi bi-people me-2"></i>Manage Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('manage_uploads') }}" class="nav-link text-white">
+                            <i class="bi bi-cloud-upload me-2"></i>Manage Uploads
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="nav-link text-white">
+                            <i class="bi bi-box-arrow-right me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 col-lg-10 ms-auto">
+            <div class="p-4">
+                <h2 class="mb-4">Admin Dashboard</h2>
+
+                <!-- Statistics Cards -->
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+                                <h2 class="card-text">{{ users_count }}</h2>
+                                <i class="bi bi-people fs-1 float-end"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Uploads</h5>
+                                <h2 class="card-text">{{ uploads_count }}</h2>
+                                <i class="bi bi-cloud-upload fs-1 float-end"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Defect Rate</h5>
+                                <h2 class="card-text">{{ defect_rate }}%</h2>
+                                <i class="bi bi-exclamation-triangle fs-1 float-end"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Recent Uploads</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    {% for upload in recent_uploads %}
+                                    <div class="list-group-item">
+                                        <div class="d-flex justify-content-between">
+                                            <span>{{ upload.filename }}</span>
+                                            <span class="badge {% if 'defect' in upload.result %}bg-danger{% else %}bg-success{% endif %}">
+                                                {{ upload.result }}
+                                            </span>
+                                        </div>
+                                        <small class="text-muted">By: {{ upload.username }}</small>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

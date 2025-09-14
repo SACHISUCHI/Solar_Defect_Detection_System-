@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5 mt-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Detect Solar Panel Defects with AI</h1>
+                <p class="lead mb-4">Our advanced machine learning system helps identify and classify defects in solar panels quickly and accurately.</p>
+                <div class="d-flex gap-3">
+                    {% if not session.username %}
+                    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">Get Started</a>
+                    <a href="#features" class="btn btn-outline-light btn-lg">Learn More</a>
+                    {% else %}
+                    <a href="{{ url_for('upload') }}" class="btn btn-light btn-lg">Upload Image</a>
+                    <a href="#features" class="btn btn-outline-light btn-lg">How It Works</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="https://ca-times.brightspotcdn.com/dims4/default/9348ab0/2147483647/strip/true/crop/2047x1075+0+38/resize/1200x630!/quality/75/?url=https:%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Ff5%2F5b%2F64bbdb71010b2ac0e368d166a83b%2Fsd-1541526326-koc85ntjtg-snap-image"
+                     alt="Solar Panels" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">About SolarDefect</h2>
+                <p class="lead">We leverage cutting-edge artificial intelligence to help solar farm operators maintain their installations efficiently.</p>
+                <p>Our system automatically detects various types of defects in solar panels, including microcracks, hotspots, and discoloration, enabling early intervention and reducing maintenance costs.</p>
+                <div class="d-flex mt-4">
+                    <div class="me-4">
+                        <h3 class="text-primary">500+</h3>
+                        <p>Images Analyzed</p>
+                    </div>
+                    <div class="me-4">
+                        <h3 class="text-primary">98%</h3>
+                        <p>Accuracy</p>
+                    </div>
+                    <div>
+                        <h3 class="text-primary">50+</h3>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                     alt="Solar Farm" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="bg-light py-5">
+    <div class="container py-5">
+        <h2 class="text-center fw-bold mb-5">How It Works</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-cloud-arrow-up text-white fs-1"></i>
+                        </div>
+                        <h4 class="card-title">1. Upload Image</h4>
+                        <p class="card-text">Upload an image of a solar panel from your device or take a new photo directly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-cpu text-white fs-1"></i>
+                        </div>
+                        <h4 class="card-title">2. AI Analysis</h4>
+                        <p class="card-text">Our advanced AI algorithms process the image to detect any defects or anomalies.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-clipboard-data text-white fs-1"></i>
+                        </div>
+                        <h4 class="card-title">3. Get Results</h4>
+                        <p class="card-text">Receive a detailed report with identified defects and recommended actions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
